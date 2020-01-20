@@ -1,1 +1,27 @@
 // Specific CSS for your home-page
+.height75 {
+  height: 70vh;
+    object-fit: cover;
+
+}
+.windsurfer {
+  object-position: center bottom;
+}
+
+.content {
+  margin-top: 4vh;
+}
+.fas {
+  margin: 0 auto;
+}
+// on small screen vh needs to be smaller
+.home-page-headding {
+  margin-top: 6vh;
+
+}
+.hompage-paragraph {
+  width: 300px;
+}
+.slide-label {
+  margin-bottom: 150px;
+}

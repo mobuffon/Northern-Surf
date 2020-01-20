@@ -1,2 +1,57 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%=image_tag "kitesurfer-homepage.jpg", class: "d-block w-100 height75" %>
+      <div class="slide-label carousel-caption d-none d-md-block">
+        <h2><%= link_to "New Posts", articles_index_all_path %></h2>
+        <p>Posts from all over the world. For every surfer. Free.</p>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <%=image_tag "windsurfer-homepage.jpg", class: "d-block w-100 height75 windsurfer" %>
+      <div class="slide-label carousel-caption d-none d-md-block">
+        <h2><%= link_to 'Be the storyteller', new_user_article_path(current_user) %></h2>
+        <p>Write your own Articles or posts. </p>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <%=image_tag "sunrise-homepage.jpg", class: "d-block w-100 height75" %>
+      <div class="slide-label carousel-caption d-none d-md-block">
+        <h2>Surfsup notifications </h2>
+        <p>New feature coming soon. Get exited! </p>
+      </div>
+    </div>
+  </div>
+
+
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+<div class="content container">
+  <div class="d-flex justify-content-center">
+    <i class=" fas fa-angle-double-down fa-4x"></i>
+  </div>
+  <h2 class="home-page-headding"style="text-align: center;">Explore Northern Surf</h2 >
+  <div class="hompage-paragraph mx-auto text-center">
+    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores libero rerum delectus beatae necessitatibus velit minima dolorem vel temporibus tempore.</p>
+  </div>
+</div>

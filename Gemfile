@@ -8,14 +8,21 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
-
+gem 'faker'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-
+gem 'tinymce-rails'
+# slackbot
+gem 'slack-ruby-client'
+gem 'async-websocket', '~> 0.8.0'
+# background jobs
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+gem 'http'
 group :development do
   gem 'web-console', '>= 3.3.0'
 end

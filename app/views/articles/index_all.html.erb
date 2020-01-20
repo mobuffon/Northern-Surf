@@ -1,0 +1,9 @@
+
+
+<div class="container">
+  <% @articles.each do |article|  %>
+  <h2><%= article.title %></h2>
+  <%= raw article.content %>
+  <hr>
+<% end %>
+</div>
