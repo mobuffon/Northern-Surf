@@ -18,7 +18,11 @@
     <div class="carousel-item">
       <%=image_tag "windsurfer-homepage.jpg", class: "d-block w-100 height75 windsurfer" %>
       <div class="slide-label carousel-caption d-none d-md-block">
-        <h2><%= link_to 'Be the storyteller', new_user_article_path(current_user) %></h2>
+        <% if user_signed_in? %>
+          <h2><%= link_to 'Be the storyteller', new_user_article_path(current user) %></h2>
+        <% else %>
+          <h2><%= link_to 'Be the storyteller', new_user_session_path %></h2>
+        <% end %>
         <p>Write your own Articles or posts. </p>
       </div>
     </div>
