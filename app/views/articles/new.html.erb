@@ -8,6 +8,7 @@
   </div>
   <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
   <%=  tinymce %>
+  <%= f.input :picture, as: :file %>
   <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>

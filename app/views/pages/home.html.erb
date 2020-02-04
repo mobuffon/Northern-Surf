@@ -8,7 +8,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <%=image_tag "kitesurfer-homepage.jpg", class: "d-block w-100 height75" %>
-      <div class="slide-label carousel-caption d-none d-md-block">
+      <div class="slide-label carousel-caption  d-md-block">
         <h2><%= link_to "New Posts", articles_index_all_path %></h2>
         <p>Posts from all over the world. For every surfer. Free.</p>
       </div>
@@ -17,9 +17,9 @@
 
     <div class="carousel-item">
       <%=image_tag "windsurfer-homepage.jpg", class: "d-block w-100 height75 windsurfer" %>
-      <div class="slide-label carousel-caption d-none d-md-block">
+      <div class="slide-label carousel-caption  d-md-block">
         <% if user_signed_in? %>
-          <h2><%= link_to 'Be the storyteller', new_user_article_path(current user) %></h2>
+          <h2><%= link_to 'Be the storyteller', new_user_article_path(current_user) %></h2>
         <% else %>
           <h2><%= link_to 'Be the storyteller', new_user_session_path %></h2>
         <% end %>
@@ -30,7 +30,7 @@
 
     <div class="carousel-item">
       <%=image_tag "sunrise-homepage.jpg", class: "d-block w-100 height75" %>
-      <div class="slide-label carousel-caption d-none d-md-block">
+      <div class="slide-label carousel-caption  d-md-block">
         <h2>Surfsup notifications </h2>
         <p>New feature coming soon. Get exited! </p>
       </div>

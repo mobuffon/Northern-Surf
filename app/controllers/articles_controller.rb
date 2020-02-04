@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index_all, :show]
   before_action :find_article, only: [:show, :edit, :update, :delete]
   def index
     @articles = Article.where(user: params[:user_id])
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -15,6 +17,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params_article)
     user = User.find(params[:user_id])
     @article.user = user
+
     if @article.save
       redirect_to root_path
     else
@@ -23,9 +26,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
   end
 
   def update
+
     @article.update(params_article)
     if @article.save
       redirect_to user_article_path(current_user, @article)
@@ -51,6 +56,6 @@ class ArticlesController < ApplicationController
   end
 
   def params_article
-    params.require(:article).permit(:title, :content, :photo, :user_id, :location, :date)
+    params.require(:article).permit(:title, :content, :user_id, :location, :photo, :date)
   end
 end

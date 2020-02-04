@@ -23,6 +23,8 @@ gem 'async-websocket', '~> 0.8.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'http'
+gem 'cloudinary', '~> 1.9.1'
+gem 'carrierwave', '~> 1.2'
 group :development do
   gem 'web-console', '>= 3.3.0'
 end

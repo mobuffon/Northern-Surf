@@ -1,0 +1,52 @@
+.box{
+  margin: 0 auto;
+  width:55vw;
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+  .keyword{
+  font-size: 0.9rem;
+  }
+  .title{
+  font-size: 1.5rem;
+  }
+  .description {
+  font-size: 1.1rem;
+
+  }
+  .writer{
+  font-size: 1.1rem;
+  text-align: right;
+  padding-right: 0.3;
+  }
+}
+
+.image{
+  height: 10em;
+  width: 10em;
+}
+@media (max-width: 760px) {
+  .box {
+    width:90vw;
+      .keyword{
+  font-size: 0.4rem;
+  }
+  .title{
+  font-size: 0.9rem;
+  }
+  .description {
+  font-size: 0.5rem;
+
+  }
+  .writer{
+  font-size: 0.5rem;
+  text-align: right;
+  }
+  }
+  .image{
+  height: 7em;
+  width: 7em;
+  }
+
+}

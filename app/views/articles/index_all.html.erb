@@ -1,9 +1,46 @@
 
-
-<div class="container">
+<div class="box">
+  <h1>Articles & Posts</h1>
+ <hr>
   <% @articles.each do |article|  %>
-  <h2><%= article.title %></h2>
-  <%= raw article.content %>
+  <%= link_to user_article_path(article.user_id, article), class: "link" do  %>
+    <div class="article-show d-flex mt-2 align-items-center">
+      <div class="content flex-grow-1">
+        <% article.keyword.each do |k| %>
+        <span class="keyword"><%= k.word %></span>
+        <% end %>
+        <h3 class="title"><%= article.title %></h3>
+        <h4 class="description"><%= article.description %></h4>
+        <h5 class="writer"><%= "#{article.user.first_name} #{article.user.last_name}" %></h4>
+      </div>
+      <% if article.photo_url %>
+      <%= cl_image_tag article.photo_url, class:"image", crop: :scale  %>
+      <% else %>
+      <%= image_tag 'https://i.pinimg.com/474x/33/0e/b4/330eb4f352cd74b3787248205526aec9.jpg',class:'image', crop: :fill  %>
+      <% end %>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- <div class="container mt-5">
+  <h3> New posts</h3>
+  <% @articles.each do |article|  %>
+
+    <div class="card article d-flex align-items-center">
+      <div class="article-details flex-grow-1">
+        <% article.keyword.each do |k| %>
+        <h5><%= k.word %></h5>
+        <% end %>
+
+        <%= link_to article.title, user_article_path(article.user_id, article), class: "link stretched-link " %>
+        <h6><%= "#{article.user.first_name} #{article.user.last_name}" %></h6>
+      </div>
+  <%= cl_image_tag article.photo_url, height: 100, width: 100, crop: :fill if article.photo_url %>
+      <h6><%= %></h6>
+    </div>
+
   <hr>
 <% end %>
-</div>
+</div> -->
+
