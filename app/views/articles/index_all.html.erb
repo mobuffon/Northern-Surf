@@ -6,9 +6,8 @@
   <%= link_to user_article_path(article.user_id, article), class: "link" do  %>
     <div class="article-show d-flex mt-2 align-items-center">
       <div class="content flex-grow-1">
-        <% article.keyword.each do |k| %>
-        <span class="keyword"><%= k.word %></span>
-        <% end %>
+        <span class="keyword"><%= article.keyword.map{|k| k.word}.join(', ') %></span>
+
         <h3 class="title"><%= article.title %></h3>
         <h4 class="description"><%= article.description %></h4>
         <h5 class="writer"><%= "#{article.user.first_name} #{article.user.last_name}" %></h4>
