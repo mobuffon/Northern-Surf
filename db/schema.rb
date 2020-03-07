@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_132706) do
+ActiveRecord::Schema.define(version: 2020_03_07_194643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2020_01_27_132706) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "spots", force: :cascade do |t|
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "upvotes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "article_id"
@@ -77,6 +85,15 @@ ActiveRecord::Schema.define(version: 2020_01_27_132706) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "uspots", force: :cascade do |t|
+    t.bigint "spot_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_uspots_on_spot_id"
+    t.index ["user_id"], name: "index_uspots_on_user_id"
+  end
+
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
@@ -84,4 +101,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_132706) do
   add_foreign_key "jointkeys", "keywords"
   add_foreign_key "upvotes", "articles"
   add_foreign_key "upvotes", "users"
+  add_foreign_key "uspots", "spots"
+  add_foreign_key "uspots", "users"
 end
