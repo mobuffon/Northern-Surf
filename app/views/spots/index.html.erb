@@ -1,25 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Spots</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @spots.each do |spot| %>
-      <tr>
-        <td><%= link_to 'Show', spot %></td>
-        <td><%= link_to 'Edit', edit_spot_path(spot) %></td>
-        <td><%= link_to 'Destroy', spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="spot-list">
+  <div class="spot-header d-flex justify-content-between align-items-center">
+    <h1>Spots</h1>
+    <%= link_to  new_spot_path, class: "add-new-spot mr-5" do %>
+      <i class="fas fa-plus-circle fa-2x"></i>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <% @spots.each do |spot| %>
+    <div class="spot-card">
+      <div class="spot-card__meta d-flex justify-content-between align-items-center">
+        <h4><%= spot.location %></h4>
+        <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+      </div>
+      <p><%= spot.url %></p>
+    </div>
+  <% end %>
 
-<%= link_to 'New Spot', new_spot_path %>
+  <br>
+</div>
