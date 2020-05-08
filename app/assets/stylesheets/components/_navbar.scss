@@ -10,6 +10,9 @@
   width: 70vw;
   justify-content: space-between;
 
+  @media all and (max-width: 425px){
+    justify-content: space-between;
+  }
 }
 .navbar-lewagon .navbar-brand img {
   width: 40px;
