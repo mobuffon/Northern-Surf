@@ -1,12 +1,13 @@
-class ScraperJob < ApplicationJob
-  queue_as :default
+# require "byebug"
+# class ScraperJob < ApplicationJob
+#   queue_as :default
 
-  def perform
+#   def perform
     require 'http'
     require 'json'
     require "open-uri"
     require "nokogiri"
-    require "byebug"
+
 
     html_content = open('https://www.windfinder.com/forecast/dahme').read
     doc = Nokogiri::HTML(html_content)
@@ -23,9 +24,9 @@ class ScraperJob < ApplicationJob
     @windhash = []
     big_windhash = [:day_1, :day_2, :day_3, :day_4, :day_5, :day_6, :day7, :day_8, :day_9, :day_10]
     def build_day(dayspan, thatday)
-      keys = ['h01', 'h04', 'h07', 'h10', 'h13', 'h16', 'h19', 'h22']
-      dayspan.map { |h| h << thatday }
-      day = Hash[keys.zip(dayspan)]
+      keys = ['h02', 'h05', 'h08', 'h11', 'h14', 'h17', 'h20', 'h23']
+
+      day = keys.zip(dayspan)
       @windhash << day
 
     end
@@ -44,68 +45,83 @@ class ScraperJob < ApplicationJob
     build_day(days[79, 8], 11)
 
     all_data = Hash[big_windhash.zip(@windhash)]
-
-
-
-
+    all_data.transform_values do |data|
+      data.map { |hour| hour.flatten! }
+    end
+    all_data
+    wind_looks_like_this = {:day_1=>[["h01", "6 ", " 8 ", "NNW"],
+                                    ["h04", "5 ", " 6 ", "NNE"],
+                                    ["h07", "2 ", " 2 ", "ENE"],
+                                    ["h10", "4 ", " 5 ", "S"],
+                                    ["h13", "5 ", " 6 ", "SSE"],
+                                    ["h16", "6 ", " 7 ", "SSE"],
+                                    ["h19", "6 ", " 8 ", "SSE"],
+                                    ["h22", "11 ", " 16 ", "S"]],
+                            :day_2=>[["h01", "11 ", " 16 ", "S"]]
+                            }
+    p "--------------------------------------"
+    p "--------------------------------------"
+    @wanted_winddirecttion = ['NE', 'NNE', 'NNW', 'NW']
     def wind_evaluation(all_data)
-      @windy_days = []
-      all_data.each_pair do |day, hours|
-        hours.each_pair do |hour, data|
-          if data[2] == "" || data[2] == "SSW"
-            if data[0].to_i >= 14
-              data << hour
-              h = data.last.gsub('h', '').to_i
-              if h > 6 && h < 20
-                @windy_days << data
-              end
+      @windy_days = {}
+      all_data = all_data.each do |day, data|
+        data.each do |hour|
+          p data
+          h = hour[0].gsub('h', '').to_i
+          min_wind = hour[1].to_i
+          max_wind = hour[2].to_i
+          wind_direction = hour[3]
+          if @wanted_winddirecttion.include? wind_direction
+            if min_wind >= 10 && h >= 5  && h <= 20
+              @windy_days[day] = hour
             end
           end
         end
       end
     end
+
     wind_evaluation(all_data)
     p @windy_days
-    def what_day(num)
-      case num
-      when 1
-        return "today"
-      when 2
-        return "tomorrow"
-      when 3..10
-        return "on the #{(Date.today + num).to_s}"
-      end
-    end
+    # def what_day(num)
+    #   case num
+    #   when 1
+    #     return "today"
+    #   when 2
+    #     return "tomorrow"
+    #   when 3..10
+    #     return "on the #{(Date.today + num).to_s}"
+    #   end
+    # end
 
-    def buildup_content
-      if @windy_days.length == 1
-        rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
-                token: ENV['SLACK_API_TOKEN'],
-                channel: '#allgemein',
-                text: "Hey, Surfs up on #{what_day(@windy_days.flatten[3])} with #{@windy_days.flatten[0]} to #{@windy_days.flatten[1]} knots from #{@windy_days.flatten[2]}at #{@windy_days.flatten[4].gsub('h', '').to_i} o'clock",
-                as_user: true
-          })
-        puts JSON.pretty_generate(JSON.parse(rc.body))
-      elsif @windy_days.length.zero?
-        rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
-              token: ENV['SLACK_API_TOKEN'],
-              channel: '#allgemein',
-              text: "No surf this week bra ",
-              as_user: true
-          })
-        puts JSON.pretty_generate(JSON.parse(rc.body))
-      else
-        @windy_days.each do |day|
-          rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
-            token: ENV['SLACK_API_TOKEN'],
-            channel: '#allgemein',
-            text: "Hey, Surfs up #{what_day(day[3])} with #{day[0]} to #{day[1]} knots from #{day[2]} at #{day[4].gsub('h', '').to_i} o'clock",
-            as_user: true
-          })
-          puts JSON.pretty_generate(JSON.parse(rc.body))
-        end
-      end
-    end
-    buildup_content
-  end
-end
+    # def buildup_content
+    #   if @windy_days.length == 1
+    #     rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
+    #             token: ENV['SLACK_API_TOKEN'],
+    #             channel: '#allgemein',
+    #             text: "Hey, Surfs up on #{what_day(@windy_days.flatten[3])} with #{@windy_days.flatten[0]} to #{@windy_days.flatten[1]} knots from #{@windy_days.flatten[2]}at #{@windy_days.flatten[4].gsub('h', '').to_i} o'clock",
+    #             as_user: true
+    #       })
+    #     puts JSON.pretty_generate(JSON.parse(rc.body))
+    #   elsif @windy_days.length.zero?
+    #     rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
+    #           token: ENV['SLACK_API_TOKEN'],
+    #           channel: '#allgemein',
+    #           text: "No surf this week bra ",
+    #           as_user: true
+    #       })
+    #     puts JSON.pretty_generate(JSON.parse(rc.body))
+    #   else
+    #     @windy_days.each do |day|
+    #       rc = HTTP.post("https://slack.com/api/chat.postMessage", params: {
+    #         token: ENV['SLACK_API_TOKEN'],
+    #         channel: '#allgemein',
+    #         text: "Hey, Surfs up #{what_day(day[3])} with #{day[0]} to #{day[1]} knots from #{day[2]} at #{day[4].gsub('h', '').to_i} o'clock",
+    #         as_user: true
+    #       })
+    #       puts JSON.pretty_generate(JSON.parse(rc.body))
+    #     end
+    #   end
+    # end
+    # buildup_content
+#   end
+# end

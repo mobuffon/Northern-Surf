@@ -1,5 +1,7 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   before_action :set_spot, only: [:show, :edit, :update, :destroy]
+
 
   # GET /spots
   # GET /spots.json
@@ -25,11 +27,10 @@ class SpotsController < ApplicationController
   # POST /spots.json
   def create
     @spot = Spot.new(spot_params)
-
     respond_to do |format|
       if @spot.save
-        format.html { redirect_to @spot, notice: 'Spot was successfully created.' }
-        format.json { render :show, status: :created, location: @spot }
+        format.html { redirect_to spots_path, notice: 'Spot was successfully created.' }
+        # format.json { render :show, status: :created, location: @spot }
       else
         format.html { render :new }
         format.json { render json: @spot.errors, status: :unprocessable_entity }
@@ -42,7 +43,7 @@ class SpotsController < ApplicationController
   def update
     respond_to do |format|
       if @spot.update(spot_params)
-        format.html { redirect_to @spot, notice: 'Spot was successfully updated.' }
+        format.html { redirect_to @spots, notice: 'Spot was successfully updated.' }
         format.json { render :show, status: :ok, location: @spot }
       else
         format.html { render :edit }
@@ -69,6 +70,6 @@ class SpotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def spot_params
-      params.fetch(:spot, {})
+      params.require(:spot).permit(:location, :url)
     end
 end

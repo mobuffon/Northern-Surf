@@ -1,14 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div id="nav-container">
+  <div id="nav-container" class="d-flex justify-content-center">
     <%= link_to root_path, class: "navbar-brand" do %>
     <h1>Northern Surf</h1>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="fas fa-bars fa-2x" style="color: white;"></i>
     </button>
   </div>
-
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -22,7 +21,7 @@
         <%=  cl_image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
         <div class="dropdown-menu dropdown-menu mr-4"  aria-labelledby="navbarDropdown">
-          <%= link_to "Edit my account", edit_user_registration_path(current_user), class: "dropdown-item" %>
+          <%= link_to "My Account", user_path(current_user), class: "dropdown-item" %>
           <%= link_to "New Post", new_user_article_path(current_user) , class: "dropdown-item"  %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
@@ -41,6 +40,6 @@
 </div>
 <div class="tabs d-flex justify-content-around">
   <h4><%= link_to "Posts",  articles_index_all_path %></h4>
-  <h4><%= link_to "My Spots", "#" , :data => {:confirm => 'This Feature is not done yet'} %></h4>
+  <h4><%= link_to "Surf Spots", spots_path %></h4>
 
 </div>

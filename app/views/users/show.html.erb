@@ -1,3 +1,11 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<p>Email: <%= @user.email %></p>
-<%= link_to 'New Article', new_user_article_path(@user) %>
+<div class="container">
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+  <%= link_to 'Account settings', edit_user_registration_path(current_user) %>
+  <span> | </span>
+  <%= link_to 'New Article', new_user_article_path(@user) %>
+  <h2>My Spots</h2>
+  <hr>
+  <% @user.spots.each do |spot| %>
+  <p><%= spot.location %></p>
+  <% end %>
+</div>

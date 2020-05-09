@@ -14,8 +14,12 @@
 @import "pages/index_all";
 
 @import "pages/article_new";
-
+@import "pages/spots/new";
 
 body {
   background-color: white;
+}
+
+.hidden {
+  display: none;
 }
