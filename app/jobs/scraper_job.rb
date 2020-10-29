@@ -8,6 +8,7 @@
     require "open-uri"
     require "nokogiri"
 
+    puts "hello"
 
     html_content = open('https://www.windfinder.com/forecast/dahme').read
     doc = Nokogiri::HTML(html_content)
