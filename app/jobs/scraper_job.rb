@@ -20,6 +20,8 @@ class ScraperJob < ApplicationJob
       data.map(&:flatten!)
     end
 
+    all_data = windy_days(all_data)
+
     @spot.update(windy_days: all_data.to_json)
   end
 
