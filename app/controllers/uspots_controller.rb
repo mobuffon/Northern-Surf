@@ -1,4 +1,8 @@
 class UspotsController < ApplicationController
+  def index
+    @uspots = current_user.uspots
+  end
+
   def create
     @uspot = Uspot.new(uspot_params)
 

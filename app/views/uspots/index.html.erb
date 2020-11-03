@@ -1,0 +1,11 @@
+<% @uspots.each do |uspot| %>
+    <div class="spot-card">
+      <div class="spot-card__meta d-flex justify-content-between align-items-center">
+        <h4><%= uspot.spot.location %></h4>
+      </div>
+      <p><%= uspot.spot.url %></p>
+      <p><%= uspot.spot.windy_days %></p>
+    </div>
+<% end %>
+<p>hello</p>
+<p>Find me in app/views/uspots/create.html.erb</p>

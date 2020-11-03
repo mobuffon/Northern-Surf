@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_115150) do
+ActiveRecord::Schema.define(version: 2020_10_29_185942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_115150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
+    t.string "windy_days"
   end
 
   create_table "upvotes", force: :cascade do |t|
@@ -85,10 +86,12 @@ ActiveRecord::Schema.define(version: 2020_04_11_115150) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-  #userspot braucht noch max wind und winddirection 
+
   create_table "uspots", force: :cascade do |t|
     t.bigint "spot_id"
     t.bigint "user_id"
+    t.string "winddirection"
+    t.string "min_kts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_uspots_on_spot_id"
