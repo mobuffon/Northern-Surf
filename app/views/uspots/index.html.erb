@@ -1,11 +1,16 @@
 <% @uspots.each do |uspot| %>
+    <% windy_days = JSON.parse(uspot.spot.windy_days) if uspot.spot.windy_days %>
     <div class="spot-card">
       <div class="spot-card__meta d-flex justify-content-between align-items-center">
-        <h4><%= uspot.spot.location %></h4>
+        <h4><%= link_to uspot.spot.location, uspot.spot.url %></h4>
       </div>
-      <p><%= uspot.spot.url %></p>
-      <p><%= uspot.spot.windy_days %></p>
+      <% if windy_days != nil && windy_days != {} %>
+        <h5>Surf on!</h5>
+        <% windy_days.each do |k, hour| %>
+          <h6><%= k %> </h6>
+        <% end %>
+        <% else %>
+          <h5>no surf this week :(</h5>
+        <% end %>
     </div>
 <% end %>
-<p>hello</p>
-<p>Find me in app/views/uspots/create.html.erb</p>

@@ -9,7 +9,7 @@ class ScraperJob < ApplicationJob
   def perform(spot)
     @spot = spot
     @windhash = []
-    @big_windhash = [:day_1, :day_2, :day_3, :day_4, :day_5, :day_6, :day_7, :day_8, :day_9, :day_10]
+    @big_windhash = (0..9).to_a
 
     days = wind_info(@spot.url)
 
@@ -19,6 +19,11 @@ class ScraperJob < ApplicationJob
     all_data.transform_values do |data|
       data.map(&:flatten!)
     end
+
+    all_data = all_data.transform_keys do |k|
+      (Date.today + k).strftime("%A %d %b")
+    end
+
 
     all_data = windy_days(all_data)
 

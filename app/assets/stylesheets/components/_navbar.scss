@@ -14,12 +14,16 @@
     justify-content: space-between;
   }
 }
+
+.navbar-brand {
+  margin-right: 0;
+}
+
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
 .navbar {
-  h1 {
-    font-size: 48px;
+  .nav-header {
     font-weight: bold;
     color: white;
   }
