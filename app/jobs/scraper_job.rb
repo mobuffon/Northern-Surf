@@ -7,27 +7,31 @@ class ScraperJob < ApplicationJob
   queue_as :default
 
   def perform(spot)
-    @spot = spot
-    @windhash = []
-    @big_windhash = (0..9).to_a
+    begin
+      @spot = spot
+      @windhash = []
+      @big_windhash = (0..9).to_a
 
-    days = wind_info(@spot.url)
+      days = wind_info(@spot.url)
 
-    build_days(days)
+      build_days(days)
 
-    all_data = Hash[@big_windhash.zip(@windhash)]
-    all_data.transform_values do |data|
-      data.map(&:flatten!)
+      all_data = Hash[@big_windhash.zip(@windhash)]
+      all_data.transform_values do |data|
+        data.map(&:flatten!)
+      end
+
+      all_data = all_data.transform_keys do |k|
+        (Date.today + k).strftime("%A %d %b")
+      end
+
+
+      all_data = windy_days(all_data)
+
+      @spot.update(windy_days: all_data.to_json)
+    rescue
+      p "this should be checked"
     end
-
-    all_data = all_data.transform_keys do |k|
-      (Date.today + k).strftime("%A %d %b")
-    end
-
-
-    all_data = windy_days(all_data)
-
-    @spot.update(windy_days: all_data.to_json)
   end
 
   def wind_info(spot_url)
