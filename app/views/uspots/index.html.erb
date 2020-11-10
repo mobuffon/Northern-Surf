@@ -3,6 +3,7 @@
     <div class="spot-card">
       <div class="spot-card__meta d-flex justify-content-between align-items-center">
         <h4><%= link_to uspot.spot.location, uspot.spot.url %></h4>
+        <%= link_to  "remove", user_uspot_path(current_user, uspot.id), method: :delete, class: "btn btn-secondary" %>
       </div>
       <% if windy_days != nil && windy_days != {} %>
         <h5>Surf on!</h5>
