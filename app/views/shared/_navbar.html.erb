@@ -12,28 +12,27 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <div class="btn-group">
-      <% if user_signed_in? %>
-
-      <li class="nav-item dropdown">
-        <% if current_user.photo %>
-        <%=  cl_image_tag current_user.photo , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% else %>
-        <%=  cl_image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% end %>
-        <div class="dropdown-menu dropdown-menu mr-4"  aria-labelledby="navbarDropdown">
-          <%= link_to "My Account", user_path(current_user), class: "dropdown-item" %>
-          <%= link_to "New Post", new_user_article_path(current_user) , class: "dropdown-item"  %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </li>
-      <% else %>
-      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="dropdown-menu  mr-4 " aria-labelledby="navbarDropdown">
-          <%= link_to "Action", "#", class: "dropdown-item" %>
-          <%= link_to "Sign in", user_session_path, class: "dropdown-item"  %>
-          <%= link_to "Sign up!", new_user_registration_path, class: "dropdown-item" %>
-        </div>
-      <% end %>
+        <li class="nav-item dropdown">
+          <% if user_signed_in? %>
+              <% if current_user.photo %>
+                <%=  cl_image_tag current_user.photo , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+                <%=  cl_image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" , class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
+              <div class="dropdown-menu mr-4" aria-labelledby="navbarDropdown">
+                <%= link_to "My Account", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "New Post", new_user_article_path(current_user) , class: "dropdown-item"  %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            <% else %>
+              <%= cl_image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu  mr-4" aria-labelledby="navbarDropdown">
+                <%= link_to "Action", "#", class: "dropdown-item" %>
+                <%= link_to "Sign in", user_session_path, class: "dropdown-item"  %>
+                <%= link_to "Sign up!", new_user_registration_path, class: "dropdown-item" %>
+              </div>
+          <% end %>
+        </li>
       </div>
     </ul>
   </div>
