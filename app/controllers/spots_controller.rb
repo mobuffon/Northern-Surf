@@ -30,6 +30,7 @@ class SpotsController < ApplicationController
     respond_to do |format|
       if @spot.save
         format.html { redirect_to spots_path, notice: 'Spot was successfully created.' }
+        ScraperJob.perform_now(@spot)
         # format.json { render :show, status: :created, location: @spot }
       else
         format.html { render :new }

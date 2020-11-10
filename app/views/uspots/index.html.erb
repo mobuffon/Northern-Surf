@@ -6,12 +6,15 @@
         <%= link_to  "remove", user_uspot_path(current_user, uspot.id), method: :delete, class: "btn btn-secondary" %>
       </div>
       <% if windy_days != nil && windy_days != {} %>
-        <h5>Surf on!</h5>
-        <% windy_days.each do |k, hour| %>
-          <h6><%= k %> </h6>
+        <h5>Surf is on!</h5>
+        <% windy_days.each do |k, hours| %>
+          <div class="d-flex justify-content-between">
+            <h6><%= k %></h6>
+            <%= render partial: "hour_split", locals: {hour_data: hours} %>
+          </div>
         <% end %>
         <% else %>
           <h5>no surf this week :(</h5>
-        <% end %>
+      <% end %>
     </div>
 <% end %>
