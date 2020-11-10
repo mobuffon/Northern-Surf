@@ -23,7 +23,7 @@ class UspotsController < ApplicationController
     end
   end
 
-private
+  private
 
   def find_uspot
     @uspot = Uspot.find(params[:id])
