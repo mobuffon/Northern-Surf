@@ -1,14 +1,14 @@
-<table style="font-size: 10px;">
+<table style="font-size: 0.8rem;">
   <tr>
     <th>Hour</th>
     <% hour_data.each do |hour|%>
-      <td><%= hour[0] %></td>
+      <td ><%= hour[0] %></td>
     <% end %>
   </tr>
   <tr>
     <th>Wind</th>
     <% hour_data.each do |hour|%>
-      <td><%= hour[1] %></td>
+      <td class="windpower"><%= hour[1] %></td>
     <% end %>
   </tr>
 </table>

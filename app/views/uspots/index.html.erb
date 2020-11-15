@@ -1,6 +1,6 @@
 <% @uspots.each do |uspot| %>
     <% windy_days = JSON.parse(uspot.spot.windy_days) if uspot.spot.windy_days %>
-    <div class="spot-card">
+    <div class="spot-card wind_table">
       <div class="spot-card__meta d-flex justify-content-between align-items-center">
         <h4><%= link_to uspot.spot.location, uspot.spot.url %></h4>
         <%= link_to  "remove", user_uspot_path(current_user, uspot.id), method: :delete, class: "btn btn-secondary" %>
@@ -8,8 +8,8 @@
       <% if windy_days != nil && windy_days != {} %>
         <h5>Surf is on!</h5>
         <% windy_days.each do |k, hours| %>
-          <div class="d-flex justify-content-between">
-            <h6><%= k %></h6>
+          <div class="">
+            <p class="wind_table_date" ><%= k %></p>
             <%= render partial: "hour_split", locals: {hour_data: hours} %>
           </div>
         <% end %>
