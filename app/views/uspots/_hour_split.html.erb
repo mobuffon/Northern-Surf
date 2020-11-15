@@ -2,13 +2,13 @@
   <tr>
     <th>Hour</th>
     <% hour_data.each do |hour|%>
-      <td ><%= hour[0] %></td>
+      <td class="info"><%= hour[0] %></td>
     <% end %>
   </tr>
   <tr>
     <th>Wind</th>
     <% hour_data.each do |hour|%>
-      <td class="windpower"><%= hour[1] %></td>
+      <td class="windpower info" data-controller="hello"><div data-target="hello.output"><%= hour[1] %></div></td>
     <% end %>
   </tr>
 </table>
