@@ -29,6 +29,5 @@ export default class extends Controller {
     }else {
       this.outputTarget.setAttribute("style", "background-color: #2962F6;");
     }
-    console.log(windpower)
   }
 }
