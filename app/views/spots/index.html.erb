@@ -12,7 +12,7 @@
         <h4><%= spot.location %></h4>
         <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
       </div>
-      <p><%= spot.url %></p>
+      <p class="spot_url"><%= spot.url %></p>
     </div>
   <% end %>
 
