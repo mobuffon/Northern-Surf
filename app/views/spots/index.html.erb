@@ -10,7 +10,11 @@
     <div class="spot-card">
       <div class="spot-card__meta d-flex justify-content-between align-items-center">
         <h4><%= spot.location %></h4>
-        <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+        <% if current_user.uspots.map { |i| i.spot_id }.include?(spot.id)%>
+          <a href='${spot.id}'>Go to Windfinder</a>
+        <% else %>
+          <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+        <% end %>
       </div>
       <p class="spot_url"><%= spot.url %></p>
     </div>
