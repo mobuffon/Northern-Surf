@@ -5,6 +5,10 @@ class UspotsController < ApplicationController
     @uspots = current_user.uspots
   end
 
+  def edit
+    find_uspot
+  end
+  
   def create
     @uspot = Uspot.new(uspot_params)
 

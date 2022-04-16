@@ -1,6 +1,11 @@
 <div class="spot-list">
-  <div class="spot-header d-flex justify-content-between align-items-center">
+  <div class="spot-header d-md-flex justify-content-between align-items-center">
     <h1>Spots</h1>
+
+    <%= simple_form_for :search, url: "/spots", method: "GET" do |f| %>
+      <%= f.input :p, label: "Search for Spots" %>
+      <%= f.button :submit, label: "Search" %>
+    <% end %>
     <%= link_to  new_spot_path, class: "add-new-spot mr-5" do %>
       <i class="fas fa-plus-circle fa-2x"></i>
     <% end %>

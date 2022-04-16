@@ -1,14 +1,15 @@
 <div class="container">
-  <h1>Dein Trip</h1>
+  <h1 class="mt-5">Your Trip</h1>
   <%= simple_form_for [current_user, @article] do |f| %>
   <div class="d-flex justify-content-between mb-3">
   <%= f.input :title, label: 'Titel  ' %>
-  <%= f.input :date, :as => :date, :input_html => { :class => 'date_picker' }, label: 'Am ' %>
-  <%= f.input :location, label: "Wo?" %>
+  <%= f.input :date, required: true,:as => :date, :input_html => { :class => 'date_picker' }, label: 'Am ' %>
+  <%= f.input :location, label: "Wo?", required: true %>
   </div>
-  <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+  <%= f.input :description,required: true, :class => "w-100" %>
+  <%= f.text_area :content,required: true, :class => "w-100", :rows => 20 %>
   <%=  tinymce %>
-  <%= f.input :picture, as: :file %>
+  <%= f.input :picture,  as: :file %>
   <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>

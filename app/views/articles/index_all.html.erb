@@ -1,22 +1,28 @@
 
-<div class="box">
+<div class="box ">
   <h1>Articles & Posts</h1>
  <hr>
+ <% if @articles.empty? %>
+   <p>If there are no posts yet - create an account and tell us about your last session!</p>
+ <% end %>
   <% @articles.each do |article|  %>
-  <%= link_to user_article_path(article.user_id, article), class: "link" do  %>
-    <div class="article-show d-flex mt-2 align-items-center">
+  <%= link_to user_article_path(article.user_id, article), class: "link " do  %>
+    <div class="article-show d-flex mt-2 align-items-center post-card">
       <div class="content flex-grow-1">
-        <span class="keyword"><%= article.keyword.map{|k| k.word}.join(', ') %></span>
-
+        <h5 class="writer"><%= "#{article.user.first_name} #{article.user.last_name}" %></h4>
         <h3 class="title"><%= article.title %></h3>
         <h4 class="description"><%= article.description %></h4>
-        <h5 class="writer"><%= "#{article.user.first_name} #{article.user.last_name}" %></h4>
+        <span class="keyword"><%= article.keyword.map{|k| k.word}.join(', ') %></span>
+
       </div>
-      <% if article.photo_url %>
-      <%= cl_image_tag article.photo_url, class:"image", crop: :scale  %>
-      <% else %>
-      <%= image_tag 'https://i.pinimg.com/474x/33/0e/b4/330eb4f352cd74b3787248205526aec9.jpg',class:'image', crop: :fill  %>
-      <% end %>
+      <div class="">
+        <% if article.photo_url %>
+        <%= cl_image_tag article.photo_url, class:"image", overflow: :hidden %>
+        <% else %>
+        <%= image_tag 'https://i.pinimg.com/474x/33/0e/b4/330eb4f352cd74b3787248205526aec9.jpg',class:'image', overflow: :hidden  %>
+        <% end %>
+
+      </div>
     </div>
     <% end %>
   <% end %>
@@ -42,4 +48,3 @@
   <hr>
 <% end %>
 </div> -->
-

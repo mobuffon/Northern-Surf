@@ -1,13 +1,20 @@
 <div class="container">
   <div class="d-flex align-items-center">
     <h1 class="flex-grow-1"id="title"><%= @article.title %></h1>
-    <%= link_to "Edit Post", edit_user_article_path(@article), class: "btn btn-primary" if current_user = @article.user %>
+
+
+
+    <% if @article.user == current_user %>
+      <%= link_to "Edit Post", edit_user_article_path(@article), class: "btn btn-primary" if current_user = @article.user %>
+    <% end %>
+
   </div>
   <h2 class="title"><%= @article.date if @article.date %></h2>
   <h2 class="title"><%= @article.location if @article.location %></h2>
+
 </div>
 
 <div class="container">
   <%= raw @article.content %>
-  <%= cl_image_tag @article.photo_url, height: 300, width: 400, crop: :fill if @article.photo_url %>
+  <%= cl_image_tag @article.photo_url, height: 300, width: 400,  crop: :fill if @article.photo_url %>
 </div>

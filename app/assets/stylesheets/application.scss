@@ -19,9 +19,123 @@
 @import "pages/spots/spot_search_page";
 
 body {
-  background-color: white;
+  background-color: #DADADA;
 }
 
 .hidden {
   display: none;
+}
+.space-on-top{
+  margin-top: 50px;
+}
+// Home Page
+.banner{
+  height: 40vh;
+}
+.carousel_image{
+  position: absolute;
+  top: -300px;
+}
+
+@media (max-width: 450px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+.hero {
+  /* Photo by mnm.all on Unsplash */
+  background: url("sunrise-homepage.jpg") center;
+  background-size: cover;
+  padding: 4rem 2rem;
+
+  /* Grid styles */
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.hero > * {
+  color: white;
+}
+
+.hero > h1 {
+  font-size: 4rem;
+  padding-bottom: 1rem;
+}
+
+.hero > article > p {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.hero > article > a {
+  padding: 1rem;
+  margin-top: .75rem;
+}
+
+/* breweries styles */
+.breweries {
+  margin-top: 2rem;
+}
+
+.breweries > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-rows: repeat(auto);
+  grid-gap: 1rem;
+  padding: 0;
+}
+
+.breweries > ul > a > li {
+  border: 1px solid #E2E2E2;
+  border-radius: .5rem;
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+
+.breweries > ul > a > li > .image-title > figure {
+  max-height: 8em;
+  overflow: hidden;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  position: relative;
+}
+
+.breweries > ul > a > li > .image-title > figure > img {
+  width: 8em;
+  height: 8em;
+}
+
+.breweries > ul > a > li > .image-title > figure > figcaption {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+  width: 100%;
+}
+
+.breweries > ul > a > li > .image-title figure > figcaption > h3 {
+  color: white;
+  padding: .3rem .1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+.breweries > ul > a > li > .image-title {
+  height: 8em;
+}
+
+.breweries > ul > a > li > .text > p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.breweries > ul > a > li > .text {
+  padding: 8px;
 }

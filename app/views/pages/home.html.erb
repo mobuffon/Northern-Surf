@@ -1,22 +1,73 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<!-- Hier war mal carrusell -->
+<section class="hero">
+  <h1>Thirsty for <br> Surfstories?</h1>
+  <article>
+    <p>Explore stories from users in your region and Sign up to write your own stories. Get in touch with other users via instagram.</p>
+    <h6><%= link_to "Browse Articles",  articles_index_all_path %></h6>
+  </article>
+</section>
+
+<!-- <div class="content container">
+  <div class="d-flex justify-content-center">
+    <i class=" fas fa-angle-double-down fa-4x"></i>
+  </div>
+  <h2 class="home-page-headding"style="text-align: center;">Explore Northern Surf</h2 >
+  <p class="hompage-paragraph text-center" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores libero rerum delectus beatae necessitatibus velit minima dolorem vel temporibus tempore.</p>
+
+</div> -->
+
+<main class="wrapper container">
+  <section class="breweries" id="breweries">
+    <h2>Latest Articles</h2>
+    <hr>
+    <ul>
+      <% @articles[0..5].each do |article|  %>
+      <%= link_to user_article_path(article.user_id, article), class: "link " do  %>
+        <li>
+          <div class="image-title">
+            <figure>
+              <!-- Photo by Quentin Dr on Unsplash -->
+              <% if article.photo_url %>
+              <%= cl_image_tag article.photo_url, class:"image", overflow: :hidden %>
+              <% else %>
+              <%= image_tag 'https://i.pinimg.com/474x/33/0e/b4/330eb4f352cd74b3787248205526aec9.jpg',class:'image', overflow: :hidden  %>
+              <% end %>
+
+            </figure>
+          </div>
+          <div class="text">
+            <h3><%= article.title%></h3>
+            <p> <%= article.description.truncate(130)%></p>
+          </div>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </section>
+</main>
+
+
+
+
+
+<!--
+<div id="carouselExampleIndicators" class="carousel slide banner" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
 
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="height: 40vh">
     <div class="carousel-item active">
-      <%=image_tag "kitesurfer-homepage.jpg", class: "d-block w-100 height75" %>
+      <%=image_tag "kitesurfer-homepage.jpg", class: "d-block carousel_image w-100 " %>
       <div class="slide-label carousel-caption  d-md-block">
         <h2><%= link_to "Our Posts", articles_index_all_path %></h2>
         <p>Posts from all over the world. For every surfer. Free.</p>
       </div>
     </div>
-
-
     <div class="carousel-item">
-      <%=image_tag "windsurfer-homepage.jpg", class: "d-block w-100 height75 windsurfer" %>
+      <%=image_tag "windsurfer-homepage.jpg", class: "d-block carousel_image w-100  windsurfer" %>
       <div class="slide-label carousel-caption  d-md-block">
         <% if user_signed_in? %>
           <h2><%= link_to 'Be the storyteller', new_user_article_path(current_user) %></h2>
@@ -26,18 +77,14 @@
         <p>Write your own Articles or posts. </p>
       </div>
     </div>
-
-
     <div class="carousel-item">
-      <%=image_tag "sunrise-homepage.jpg", class: "d-block w-100 height75" %>
+      <%=image_tag "sunrise-homepage.jpg", class: "d-block carousel_image w-100 " %>
       <div class="slide-label carousel-caption  d-md-block">
         <h2>Surfsup notifications </h2>
         <p>New feature coming soon. Get exited! </p>
       </div>
     </div>
   </div>
-
-
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -47,13 +94,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
-
-<div class="content container">
-  <div class="d-flex justify-content-center">
-    <i class=" fas fa-angle-double-down fa-4x"></i>
-  </div>
-  <h2 class="home-page-headding"style="text-align: center;">Explore Northern Surf</h2 >
-  <p class="hompage-paragraph text-center" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores libero rerum delectus beatae necessitatibus velit minima dolorem vel temporibus tempore.</p>
-</div>
+ -->

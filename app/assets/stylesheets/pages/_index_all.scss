@@ -1,9 +1,17 @@
 .box{
   margin: 0 auto;
   width:55vw;
+
   .link {
     text-decoration: none;
     color: black;
+  }
+  .post-card{
+    border-style: solid;
+    border-radius: 1rem;
+    border-width: 2px;
+    border-color: grey;
+    padding:5px;
   }
   .keyword{
   font-size: 0.9rem;
@@ -17,7 +25,7 @@
   }
   .writer{
   font-size: 1.1rem;
-  text-align: right;
+
   padding-right: 0.3;
   }
 }

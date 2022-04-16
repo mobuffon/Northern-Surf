@@ -27,7 +27,6 @@
             <% else %>
               <%= cl_image_tag "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu  mr-4" aria-labelledby="navbarDropdown">
-                <%= link_to "Action", "#", class: "dropdown-item" %>
                 <%= link_to "Sign in", user_session_path, class: "dropdown-item"  %>
                 <%= link_to "Sign up!", new_user_registration_path, class: "dropdown-item" %>
               </div>

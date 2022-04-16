@@ -6,7 +6,12 @@ class SpotsController < ApplicationController
   # GET /spots
   # GET /spots.json
   def index
-    @spots = Spot.all
+    search_params
+    if params[:search]
+      @spots= Spot.where("location LIKE ?","%" + params[:search][:p] + "%")
+    else
+      @spots = Spot.all
+    end
   end
 
   # GET /spots/1
@@ -71,6 +76,11 @@ class SpotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def spot_params
-      params.require(:spot).permit(:location, :url)
+      params.require(:spot).permit(:location, :url, :search)
     end
+
+    def search_params
+      params.permit( :search)
+    end
+
 end
