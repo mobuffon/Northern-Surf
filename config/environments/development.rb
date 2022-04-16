@@ -32,10 +32,24 @@ Rails.application.configure do
   config.active_storage.service = :cloudinary
 
   # Don't care if the mailer can't send.
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  #config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
+  #config.action_mailer.delivery_method = :smtp
+  host = 'Northern-Surf.com' #replace with your own url
+  config.action_mailer.default_url_options = { host: host }
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => ENV["EMAIL"],
+    :password             => ENV["EMAIL_PW"],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 
   config.action_mailer.perform_caching = false
 

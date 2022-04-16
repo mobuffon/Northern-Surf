@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Check out the surf this week</h1>
+      <% @user.uspots.each do |uspot| %>
+          <% windy_days = JSON.parse(uspot.spot.windy_days) if uspot.spot.windy_days %>
+          <div class="spot-card wind_table" data-controller="expand">
+            <div class="spot-card__meta d-flex justify-content-between align-items-center">
+              <h3><%= link_to uspot.spot.location, uspot.spot.url %></h3>
+            </div>
+            <% if windy_days != nil && windy_days != {} %>
+              <p>Surf is on!</p>
+              <% counter = 0 %>
+              <% windy_days.each do |k, hours| %>
+                <% counter += 1 %>
+                <div class="<%= 'hidden' if counter > 3 %>" data-target="<%= 'expand.hide' if counter > 3 %>">
+                  <p class="wind_table_date" ><%= k %></p>
+                  <table style="font-size: 1rem;">
+                    <tr>
+                      <th>Hour</th>
+                      <% hours.each do |hour|%>
+                        <td class="info"><%= hour[0] %></td>
+                      <% end %>
+                    </tr>
+                    <tr>
+                      <th>Wind</th>
+                      <% hours.each do |hour|%>
+                        <td class="windpower info" data-controller="hello"><div data-target="hello.output"><%= hour[1] %></div></td>
+                      <% end %>
+                    </tr>
+                  </table>
+                </div>
+              <% end %>
+              <% else %>
+                <h5>no surf this week :(</h5>
+            <% end %>
+          </div>
+          <hr>
+      <% end %>
+    </div>
+  </body>
+</html>
