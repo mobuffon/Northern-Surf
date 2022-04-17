@@ -1,60 +1,71 @@
-.box{
-  margin: 0 auto;
-  width:55vw;
 
-  .link {
-    text-decoration: none;
-    color: black;
-  }
-  .post-card{
-    border-style: solid;
-    border-radius: 1rem;
-    border-width: 2px;
-    border-color: grey;
-    padding:5px;
-  }
-  .keyword{
-  font-size: 0.9rem;
-  }
-  .title{
-  font-size: 1.5rem;
-  }
-  .description {
-  font-size: 1.1rem;
 
-  }
-  .writer{
-  font-size: 1.1rem;
 
-  padding-right: 0.3;
-  }
+.articles-index{
+
+}
+.articles-index > .surfposts {
+  margin-top: 2rem;
 }
 
-.image{
-  height: 10em;
-  width: 10em;
+.articles-index > .surfposts > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  grid-template-rows: repeat(auto);
+  grid-gap: 1rem;
+  padding: 0;
 }
-@media (max-width: 760px) {
-  .box {
-    width:90vw;
-      .keyword{
-  font-size: 0.4rem;
-  }
-  .title{
-  font-size: 0.9rem;
-  }
-  .description {
-  font-size: 0.5rem;
 
-  }
-  .writer{
-  font-size: 0.5rem;
+.articles-index > .surfposts > ul > a > li {
+  border: 1px solid #E2E2E2;
+  border-radius: .5rem;
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+
+.articles-index > .surfposts > ul > a > li > .image-title > figure {
+  max-height: 8em;
+  overflow: hidden;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  position: relative;
+}
+
+.articles-index > .surfposts > ul > a > li > .image-title > figure > img {
+  width: 8em;
+  height: 8em;
+}
+
+.articles-index > .surfposts > ul > a > li > .image-title > figure > figcaption {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+  width: 100%;
+}
+
+.articles-index > .surfposts > ul > a > li > .image-title figure > figcaption > h3 {
+  color: white;
+  padding: .3rem .1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+.articles-index > .surfposts > ul > a > li > .image-title {
+  height: 8em;
+}
+
+.articles-index > .surfposts > ul > a > li > .text > p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.articles-index > .surfposts > ul > a > li > .text {
+  padding: 8px;
+  width: 100%;
+}
+.keywords{
   text-align: right;
-  }
-  }
-  .image{
-  height: 7em;
-  width: 7em;
-  }
-
 }

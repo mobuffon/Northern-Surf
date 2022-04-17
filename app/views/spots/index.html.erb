@@ -15,6 +15,8 @@
     <div class="spot-card">
       <div class="spot-card__meta d-flex justify-content-between align-items-center">
         <h4><%= spot.location %></h4>
+        <h4><%= spot.latitude %></h4>
+        <h4><%= spot.longitude %></h4>
         <% if current_user.uspots.map { |i| i.spot_id }.include?(spot.id)%>
           <a href='${spot.id}'>Go to Windfinder</a>
         <% else %>

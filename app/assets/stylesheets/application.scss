@@ -77,12 +77,12 @@ body {
   margin-top: .75rem;
 }
 
-/* breweries styles */
-.breweries {
+/* surfposts styles */
+.surfposts {
   margin-top: 2rem;
 }
 
-.breweries > ul {
+.surfposts > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   grid-template-rows: repeat(auto);
@@ -90,7 +90,7 @@ body {
   padding: 0;
 }
 
-.breweries > ul > a > li {
+.surfposts > ul > a > li {
   border: 1px solid #E2E2E2;
   border-radius: .5rem;
   display: flex;
@@ -98,7 +98,7 @@ body {
   color: black;
 }
 
-.breweries > ul > a > li > .image-title > figure {
+.surfposts > ul > a > li > .image-title > figure {
   max-height: 8em;
   overflow: hidden;
   border-top-left-radius: .5rem;
@@ -106,29 +106,29 @@ body {
   position: relative;
 }
 
-.breweries > ul > a > li > .image-title > figure > img {
+.surfposts > ul > a > li > .image-title > figure > img {
   width: 8em;
   height: 8em;
 }
 
-.breweries > ul > a > li > .image-title > figure > figcaption {
+.surfposts > ul > a > li > .image-title > figure > figcaption {
   position: absolute;
   bottom: 0;
   background-color: rgba(0,0,0,.7);
   width: 100%;
 }
 
-.breweries > ul > a > li > .image-title figure > figcaption > h3 {
+.surfposts > ul > a > li > .image-title figure > figcaption > h3 {
   color: white;
   padding: .3rem .1rem;
   font-size: 0.85rem;
   margin-bottom: 0;
 }
-.breweries > ul > a > li > .image-title {
+.surfposts > ul > a > li > .image-title {
   height: 8em;
 }
 
-.breweries > ul > a > li > .text > p {
+.surfposts > ul > a > li > .text > p {
   font-size: 1rem;
   line-height: 1.5;
   color: #666666;
@@ -136,6 +136,6 @@ body {
   margin-block-start: 0;
   margin-block-end: 0;
 }
-.breweries > ul > a > li > .text {
+.surfposts > ul > a > li > .text {
   padding: 8px;
 }

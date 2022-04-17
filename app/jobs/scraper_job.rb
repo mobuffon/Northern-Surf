@@ -6,9 +6,13 @@ require 'nokogiri'
 class ScraperJob < ApplicationJob
   queue_as :default
 
-  def perform(spot)
+  def perform(spot, geo=false)
     begin
       @spot = spot
+      if geo
+        latitude, longitude = GeoLocationJob.perform_now(@spot.location)
+        @spot.update(latitude: latitude, longitude: longitude)
+      end
       @windhash = []
       @big_windhash = (0..9).to_a
 
