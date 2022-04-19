@@ -1,0 +1,1 @@
+var latitude=document.currentScript.getAttribute("latitude"),longitude=document.currentScript.getAttribute("longitude"),hans=document.currentScript.getAttribute("hans");hans=document.currentScript.getAttribute("hans");if(latitude&&longitude){var marker=L.marker([latitude,longitude],{icon:standingMarker}).addTo(map);marker.bindPopup(`<p><b>${hans}</b></p>`)}
