@@ -13,7 +13,7 @@ var poolMarker = L.icon({
 
 
 var map = L.map('map').setView([53.805, 10.3], 6.8);
-L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<%=ENV["MAP_TOKEN"]%>`, {
+L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=<%=ENV["MAP_TOKEN"]%>", {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   id: 'mapbox/streets-v11',
