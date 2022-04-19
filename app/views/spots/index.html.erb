@@ -1,31 +1,68 @@
-<div class="spot-list">
-  <div class="spot-header d-md-flex justify-content-between align-items-center">
-    <h1>Spots</h1>
 
-    <%= simple_form_for :search, url: "/spots", method: "GET" do |f| %>
-      <%= f.input :p, label: "Search for Spots" %>
-      <%= f.button :submit, label: "Search" %>
-    <% end %>
-    <%= link_to  new_spot_path, class: "add-new-spot mr-5" do %>
-      <i class="fas fa-plus-circle fa-2x"></i>
-    <% end %>
-  </div>
+  <section class="" style="padding: 0 0 0 20px;" >
+    <div class="spot-list">
+      <div class="spot-header d-md-flex justify-content-between align-items-center">
+        <h1>Spots</h1>
 
-  <% @spots.each do |spot| %>
-    <div class="spot-card">
-      <div class="spot-card__meta d-flex justify-content-between align-items-center">
-        <h4><%= spot.location %></h4>
-        <h4><%= spot.latitude %></h4>
-        <h4><%= spot.longitude %></h4>
-        <% if current_user.uspots.map { |i| i.spot_id }.include?(spot.id)%>
-          <a href='${spot.id}'>Go to Windfinder</a>
-        <% else %>
-          <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+        <%= simple_form_for :search, url: "/spots", method: "GET" do |f| %>
+          <div class="d-flex mr-3">
+            <%= f.input :p, label: false, placeholder: "Spot name" %>
+            <%= f.submit "Search" %>
+          </div>
+        <% end %>
+        <%= link_to  new_spot_path, class: "add-new-spot mr-3  d-none d-xl-block" do %>
+          <i class="fas fa-plus-circle fa-2x"></i>
         <% end %>
       </div>
-      <p class="spot_url"><%= spot.url %></p>
-    </div>
-  <% end %>
+      <div class="d-xl-flex surfspots" id="surfspots" >
+        <div class="flex-grow-1 mb-5 mb-xl-0" id="map">
+          <%= javascript_include_tag 'map_markers' %>
+        </div>
+        <%= link_to  new_spot_path, class: "add-new-spot mobile-add-spot	d-lg-block d-xl-none" do %>
+          <i class="fas fa-plus-circle fa-2x"></i>
+        <% end %>
+        <ul class="surfspots-list">
+            <% @spots[0..8].each do |spot, index| %>
+            <li>
+              <% if spot.latitude && spot.longitude %>
+                <%= javascript_include_tag 'spot_marker', latitude: spot.latitude, longitude: spot.longitude , hans: spot.location%>
+              <% end %>
+                <div class="spot-card__meta w-100 d-flex justify-content-between align-items-center">
+                  <h4><%= spot.location %></h4>
+                  <% if !current_user || (current_user.uspots.map { |i| i.spot_id }.include?(spot.id))%>
+                    <a href='${spot.id}'>Go to Windfinder</a>
+                  <% else %>
+                    <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
 
-  <br>
-</div>
+        </ul>
+      </div>
+      <div class="surfspots">
+        <ul class="surfspots-list mt-xl-3">
+            <% @spots[9..-1].each do |spot, index| %>
+            <li>
+              <% if spot.latitude && spot.longitude %>
+                <%= javascript_include_tag 'spot_marker', latitude: spot.latitude, longitude: spot.longitude , hans: spot.location%>
+              <% end %>
+                <div class="spot-card__meta w-100 d-flex justify-content-between align-items-center">
+                  <h4><%= spot.location %></h4>
+                  <% if !current_user || (current_user.uspots.map { |i| i.spot_id }.include?(spot.id))%>
+                    <a href='${spot.id}'>Go to Windfinder</a>
+                  <% else %>
+                    <%= link_to  "Add to my spots", user_uspots_path(current_user, spot_id: spot), method: :post, class: "btn btn-secondary" %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+
+        </ul>
+      </div>
+
+
+
+      <br>
+    </div>
+  </section>

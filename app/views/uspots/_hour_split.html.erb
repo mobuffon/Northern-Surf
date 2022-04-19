@@ -11,4 +11,10 @@
       <td class="windpower info" data-controller="hello"><div data-target="hello.output"><%= hour[1] %></div></td>
     <% end %>
   </tr>
+  <tr>
+    <th>Dir.</th>
+    <% hour_data.each do |hour|%>
+      <td class="wind_direction " data-controller="wind-direction" ><div data-target="wind-direction.arrow" value="<%= hour[3]%>"><i class="fas fa-location-arrow"></i></td>
+    <% end %>
+  </tr>
 </table>

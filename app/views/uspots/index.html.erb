@@ -4,14 +4,16 @@
 
   </div>
 <% end %>
-<div class="container">
+<div class="container mt-3">
+  <h2>Check when and where you can surf</h2>
+  <p>We send you an reminder every thursday with including the coming days and spots where you can surf <b>so you don't need to remember to check the forecast anymore!</b></p>
   <% @uspots.each do |uspot| %>
       <% windy_days = JSON.parse(uspot.spot.windy_days) if uspot.spot.windy_days %>
-      <div class="spot-card wind_table" data-controller="expand">
+      <div class="spot-card wind_table mb-2 p-3" data-controller="expand">
         <div class="spot-card__meta d-flex justify-content-between align-items-center">
           <h4><%= link_to uspot.spot.location, uspot.spot.url %></h4>
           <%= link_to  "remove", user_uspot_path(current_user, uspot.id), method: :delete, class: "btn btn-secondary" %>
-          <%= link_to  "Edit Specifications", edit_user_uspot_path(current_user, uspot.id), class: "btn btn-secondary" %>
+          <%= link_to  "Edit Specifications", edit_user_uspot_path(current_user, uspot.id), class: "btn btn-secondary hidden" %>
         </div>
         <% if windy_days != nil && windy_days != {} %>
           <h5>Surf is on!</h5>

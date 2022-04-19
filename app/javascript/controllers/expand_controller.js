@@ -1,10 +1,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "hide", 'expandButton' ]
+  // static targets = [ "hide", 'expandButton' ]
 
   connect() {
-    console.log("hello");
+
   };
 
   expand() {

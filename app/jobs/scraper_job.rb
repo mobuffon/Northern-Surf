@@ -6,18 +6,22 @@ require 'nokogiri'
 class ScraperJob < ApplicationJob
   queue_as :default
 
-  def perform(spot, geo=false)
-    begin
+  def perform(spot, geo=false, location=false)
+
       @spot = spot
       if geo
-        latitude, longitude = GeoLocationJob.perform_now(@spot.location)
+        if location
+          latitude, longitude = GeoLocationJob.perform_now(location)
+        else
+          latitude, longitude = GeoLocationJob.perform_now(@spot.location)
+        end
         @spot.update(latitude: latitude, longitude: longitude)
       end
       @windhash = []
       @big_windhash = (0..9).to_a
 
       days = wind_info(@spot.url)
-
+      sleep(10)
       build_days(days)
 
       all_data = Hash[@big_windhash.zip(@windhash)]
@@ -33,9 +37,9 @@ class ScraperJob < ApplicationJob
       all_data = windy_days(all_data)
 
       @spot.update(windy_days: all_data.to_json)
-    rescue
-      p "this should be checked"
-    end
+
+      # p "this should be checked"
+
   end
 
   def wind_info(spot_url)
@@ -43,12 +47,13 @@ class ScraperJob < ApplicationJob
     doc = Nokogiri::HTML(html_content)
     windspeed = doc.search('.speed').text.gsub(/\s+/, "")
     max_windspeed = doc.search('.data-gusts').text.gsub(/\s+/, "")
-    wind_direction = doc.search('.units-wd-dir').text.gsub(/\s+/, ",").split(',').delete_if { |string| string == '' } # .split(/(\d{2}h(.){5,15}s)/) # .delete_if { |string| string == "" || string == "t" }
+    wind_direction = doc.search('.units-wd-deg').text.gsub(/\s+/, ",").split(',').delete_if { |string| string == '' } # .split(/(\d{2}h(.){5,15}s)/) # .delete_if { |string| string == "" || string == "t" }
+    wind_direction2 = doc.search('.units-wd-dir').text.gsub(/\s+/, ",").split(',').delete_if { |string| string == '' } # .split(/(\d{2}h(.){5,15}s)/) # .delete_if { |string| string == "" || string == "t" }
 
     windspeed = windspeed.to_s.split('k').map { |s| s.gsub(/[k,t,s,]/, '') }.delete_if { |s| s == '' }
     max_windspeed = max_windspeed.to_s.split('k').map { |s| s.gsub(/[k,t,s,m,a,x]/, '') }.delete_if { |s| s == '' }
 
-    days = windspeed.zip(max_windspeed, wind_direction)
+    days = windspeed.zip(max_windspeed, wind_direction, wind_direction2)
     return days
   end
 

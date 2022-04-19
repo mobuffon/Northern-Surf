@@ -8,7 +8,7 @@ class GeoLocationJob < ApplicationJob
 
     uri = URI.parse("https://api.radar.io/v1/search/autocomplete?query=#{location}")
     request = Net::HTTP::Get.new(uri)
-    request["Authorization"] = "prj_live_pk_8806bae1f6131e694500fddba8065b65e3ae59cf"
+    request["Authorization"] = ENV["GEO_KEY"]
 
     req_options = {
       use_ssl: uri.scheme == "https",

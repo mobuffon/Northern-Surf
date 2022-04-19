@@ -1,0 +1,36 @@
+.search_p{
+  max-width: 300px;
+  width: 300px;
+  margin: 3px 5px 0 0;
+}
+#map {
+  min-width: 200px;
+  min-height: 600px;
+  max-height: 1000px;
+  max-width: 100%;
+  margin-right: 20px;
+
+}
+.mobile-add-spot {
+  margin-left: 80vw;
+  margin-bottom: 15px;
+}
+
+.heading-icon{
+  display: inline-block;
+}
+.marker-1 {
+  background: url("/images/marker-1.png");
+  background-size: cover;
+  height: calc(1.325rem + .9vw);
+  width: calc(1.325rem + .9vw);
+  display: inline-block;
+}
+
+.marker-2 {
+  background: url("/images/marker-2.png");
+  background-size:cover;
+  height: calc(1.325rem + .9vw);
+  width: calc(1.325rem + .9vw);
+  display: inline-block;
+}
