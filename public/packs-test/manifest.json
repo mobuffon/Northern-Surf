@@ -1,0 +1,34 @@
+{
+  "application.js": "/packs-test/js/application-cc6733244c86cc9889c4.js",
+  "application.js.map": "/packs-test/js/application-cc6733244c86cc9889c4.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs-test/js/application-cc6733244c86cc9889c4.js"
+      ],
+      "js.map": [
+        "/packs-test/js/application-cc6733244c86cc9889c4.js.map"
+      ]
+    },
+    "homepage": {
+      "js": [
+        "/packs-test/js/homepage-8b250d2a901a1e214fde.js"
+      ],
+      "js.map": [
+        "/packs-test/js/homepage-8b250d2a901a1e214fde.js.map"
+      ]
+    },
+    "tinymce": {
+      "js": [
+        "/packs-test/js/tinymce-bd259de26af631f98801.js"
+      ],
+      "js.map": [
+        "/packs-test/js/tinymce-bd259de26af631f98801.js.map"
+      ]
+    }
+  },
+  "homepage.js": "/packs-test/js/homepage-8b250d2a901a1e214fde.js",
+  "homepage.js.map": "/packs-test/js/homepage-8b250d2a901a1e214fde.js.map",
+  "tinymce.js": "/packs-test/js/tinymce-bd259de26af631f98801.js",
+  "tinymce.js.map": "/packs-test/js/tinymce-bd259de26af631f98801.js.map"
+}
